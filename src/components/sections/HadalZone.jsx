@@ -943,7 +943,7 @@ export default function HadalZone({ scrollData }) {
                         transition={{ delay: 4, duration: 1 }}
                         className="mt-4 text-[10px] tracking-widest text-white/50 uppercase group-hover:text-white transition-colors animate-pulse"
                       >
-                        [ CLICK TO PLAY LAST LOG ]
+                        [ CLICK TO RECORD Morel's LAST MESSAGE]
                       </motion.div>
                     </motion.div>
                   </motion.div>
