@@ -54,7 +54,7 @@ export default function ElenaConclusion() {
               THE FATE OF ELENA VASQUEZ
             </h2>
 
-            <div className="space-y-5 font-mono text-sm leading-7">
+            <div className="space-y-6 font-mono text-sm leading-7 px-4 md:px-6">
               <motion.div
                 initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
