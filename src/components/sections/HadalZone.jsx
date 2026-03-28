@@ -175,8 +175,108 @@ function SpeakText({ text, baseDelay = 0, className = "" }) {
   );
 }
 
-export default function HadalZone({ scrollData }) {
+// Detailed Jacques silhouette component for the final scene
+function DetailedJacques({ className = "" }) {
+  return (
+    <motion.div
+      initial={{ y: 0, opacity: 0, scale: 1 }}
+      animate={{ y: 500, opacity: [0, 1, 1, 0], scale: 0.8 }}
+      transition={{ duration: 15, ease: "linear" }}
+      className={`relative ${className}`}
+    >
+      <svg viewBox="0 0 260 420" width="130" height="210" className="drop-shadow-[0_0_40px_rgba(255,215,0,0.4)]">
+        {/* tank behind */}
+        <rect x="98" y="78" width="64" height="122" rx="28" fill="#1a1a2e" stroke="#ffd700" strokeWidth="1" opacity="0.6" />
+        {/* helmet outer */}
+        <circle cx="130" cy="82" r="52" fill="#1a1a2e" stroke="#ffd700" strokeWidth="2" />
+        {/* visor glow */}
+        <ellipse cx="130" cy="85" rx="34" ry="28" fill="#ffd700" opacity="0.2" />
+        {/* neck ring */}
+        <rect x="104" y="126" width="52" height="16" rx="6" fill="#ffd700" opacity="0.4" />
+        {/* torso */}
+        <path d="M88 142 Q96 132 108 132 L152 132 Q164 132 172 142 L186 240 Q188 258 175 270 L85 270 Q72 258 74 240 Z" fill="#1a1a2e" stroke="#ffd700" strokeWidth="2" />
+        {/* chest panel glow */}
+        <rect x="110" y="170" width="40" height="34" rx="6" fill="#ffd700" opacity="0.1" stroke="#ffd700" strokeWidth="1" />
+        {/* arms */}
+        <path d="M83 154 C58 175, 48 215, 56 248" stroke="#ffd700" strokeWidth="12" fill="none" strokeLinecap="round" opacity="0.7" />
+        <path d="M177 154 C202 175, 212 215, 204 248" stroke="#ffd700" strokeWidth="12" fill="none" strokeLinecap="round" opacity="0.7" />
+        {/* legs */}
+        <path d="M112 292 L100 365" stroke="#ffd700" strokeWidth="14" strokeLinecap="round" opacity="0.7" />
+        <path d="M148 292 L160 365" stroke="#ffd700" strokeWidth="14" strokeLinecap="round" opacity="0.7" />
+        {/* Golden core glow */}
+        <circle cx="130" cy="200" r="40" fill="url(#goldGlow)" opacity="0.5" />
+        <defs>
+          <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffd700" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#ffd700" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </motion.div>
+  );
+}
 
+// Organic tentacle component for wrapping Jacques
+function CinematicTentacle({ delay, x, rotate, color = "#00FF9F" }) {
+  return (
+    <motion.path
+      d={`M ${x} 800 Q ${x + 100} ${400} 400 300`}
+      stroke={color}
+      strokeWidth="40"
+      fill="none"
+      strokeLinecap="round"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={{ 
+        pathLength: 1, 
+        opacity: [0, 0.4, 0.2, 0.5],
+        d: [
+          `M ${x} 900 Q ${x + 100} ${500} 430 350`,
+          `M ${x} 800 Q ${x - 100} ${300} 380 250`,
+          `M ${x} 850 Q ${x + 50} ${450} 410 320`,
+        ]
+      }}
+      transition={{ 
+        pathLength: { duration: 5, delay, ease: "easeOut" },
+        opacity: { duration: 5, delay, repeat: Infinity, repeatType: "mirror" },
+        d: { duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }
+      }}
+      className="drop-shadow-[0_0_20px_rgba(0,255,159,0.2)]"
+    />
+  );
+}
+
+// Marine snow/particles for depth
+function MarineSnow() {
+  const particles = Array.from({ length: 40 });
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ 
+            x: Math.random() * 100 + "%", 
+            y: -10, 
+            opacity: Math.random() * 0.5,
+            scale: Math.random() * 0.5 + 0.5
+          }}
+          animate={{ 
+            y: ["0vh", "100vh"],
+            x: [null, `${(Math.random() - 0.5) * 50}px`]
+          }}
+          transition={{ 
+            duration: Math.random() * 10 + 10, 
+            repeat: Infinity, 
+            ease: "linear",
+            delay: Math.random() * 10
+          }}
+          className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function HadalZone({ scrollData }) {
   let cumulativeDelay = 0;
 
   const getDelay = (word) => {
@@ -1026,7 +1126,7 @@ export default function HadalZone({ scrollData }) {
                   />
 
                   <SpeakText
-                    text='"I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughter\s photograph, it stopped. It understood love."'
+                    text='"I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughters photograph, it stopped. It understood love."'
                     baseDelay={7}
                     className="text-lg opacity-80"
                   />
@@ -1080,13 +1180,16 @@ export default function HadalZone({ scrollData }) {
               </div>
             )}
 
-            {/* PHASE 6: THE FAREWELL */}
+             {/* PHASE 6: THE FAREWELL */}
             {endingPhase === 'farewell' && (
               <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                 {/* Deep ocean background */}
                 <div className="absolute inset-0" style={{
                   background: 'radial-gradient(ellipse at center, #001a0a 0%, #000 100%)'
                 }} />
+
+                {/* Atmospheric Particles */}
+                <MarineSnow />
 
                 {/* Kraken tentacle wrapping */}
                 <motion.div
@@ -1112,60 +1215,30 @@ export default function HadalZone({ scrollData }) {
                   </svg>
                 </motion.div>
 
-                {/* Jacques' silhouette glowing gold */}
-                <motion.div
-                  className="relative z-10 flex flex-col items-center"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {/* Diver silhouette */}
-                  <motion.div
-                    animate={{
-                      filter: [
-                        'drop-shadow(0 0 5px rgba(0,255,159,0.3))',
-                        'drop-shadow(0 0 30px rgba(255,200,0,0.8))',
-                        'drop-shadow(0 0 60px rgba(255,200,0,1))'
-                      ]
-                    }}
-                    transition={{ duration: 4, ease: "easeIn" }}
-                  >
-                    <svg viewBox="0 0 100 200" width="120" height="240">
-                      {/* Body */}
-                      <motion.path
-                        d="M50,20 Q65,20 70,40 L72,100 L65,180 L35,180 L28,100 L30,40 Q35,20 50,20 Z"
-                        animate={{ fill: ['#1a1a2e', '#ffd700', '#ffaa00'] }}
-                        transition={{ duration: 4, ease: "easeIn" }}
-                      />
-                      {/* Head/Helmet */}
-                      <motion.circle
-                        cx="50" cy="15" r="14"
-                        animate={{ fill: ['#1a1a2e', '#ffd700'] }}
-                        transition={{ duration: 4 }}
-                      />
-                      {/* Arms outstretched peacefully */}
-                      <motion.path
-                        d="M30,60 L5,80 M70,60 L95,80"
-                        stroke="#ffd700"
-                        strokeWidth="8"
-                        strokeLinecap="round"
-                        animate={{ opacity: [0, 1] }}
-                        transition={{ delay: 2, duration: 2 }}
-                      />
-                    </svg>
-                  </motion.div>
+                {/* Jacques Sinking */}
+                <DetailedJacques className="z-10" />
 
-                  {/* Gold bioluminescence spreading outward */}
-                  <motion.div
-                    className="absolute rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(255,200,0,0.4) 0%, transparent 70%)' }}
-                    animate={{
-                      width: ['100px', '600px'],
-                      height: ['100px', '600px'],
-                      opacity: [0, 0.6, 0]
-                    }}
-                    transition={{ duration: 5, ease: "easeOut" }}
-                  />
-                </motion.div>
+                {/* Darker tentacles wrapping him */}
+                <div className="absolute inset-0 z-20 pointer-events-none">
+                  <svg viewBox="0 0 800 600" className="w-full h-full">
+                    <CinematicTentacle x={-200} delay={0} color="#00FF9F" />
+                    <CinematicTentacle x={200} delay={1} color="#FF0055" />
+                    <CinematicTentacle x={500} delay={2} color="#0088FF" />
+                    <CinematicTentacle x={800} delay={3} color="#FFD700" />
+                    <CinematicTentacle x={1100} delay={4} color="#00FF9F" />
+                  </svg>
+                </div>
+
+                {/* Sinking Camera Shake */}
+                <motion.div
+                  animate={{ 
+                    x: [-2, 2, -1, 1, 0],
+                    y: [-1, 1, -0.5, 0.5, 0]
+                  }}
+                  transition={{ duration: 0.2, repeat: Infinity }}
+                  className="absolute inset-0 pointer-events-none bg-radial from-transparent to-black opacity-40 z-30"
+                />
+
 
                 {/* Text */}
                 <motion.div
