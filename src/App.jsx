@@ -4,6 +4,7 @@ import Navbar from './components/ui/Navbar'
 import DepthMeter from './components/ui/DepthMeter'
 import DiverCharacter from './components/ui/DiverCharacter'
 import TorchCursor from './components/ui/TorchCursor'
+import AudioButton from './components/ui/AudioButton'
 import OceanCanvas from './components/canvas/OceanCanvas'
 import Surface from './components/sections/Surface'
 import TwilightZone from './components/sections/TwilightZone'
@@ -14,11 +15,13 @@ import { useScrollDepth } from './hooks/useScrollDepth'
 import { ClueProvider } from './context/ClueContext'
 import ClueHUD from './components/ui/ClueHUD'
 import ElenaConclusion from './components/ui/ElenaConclusion'
+import { useAudioManager } from './hooks/useAudioManager'
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [canvasLoaded, setCanvasLoaded] = useState(false)
   const scrollData = useScrollDepth()
+  const { isMuted, toggleMute, isStarted } = useAudioManager(scrollData)
 
   const handleLoadingComplete = () => {
     setIsLoading(false)
@@ -56,6 +59,7 @@ export default function App() {
         <DepthMeter scrollData={scrollData} />
         <ClueHUD />
         <ElenaConclusion />
+        <AudioButton isMuted={isMuted} toggleMute={toggleMute} isStarted={isStarted} />
 
         {/* Global custom cursor that projects light */}
         <TorchCursor scrollData={scrollData} />
