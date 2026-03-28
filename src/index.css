@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --color-surface: #4FC3F7;
+  --color-twilight: #1A6B8A;
+  --color-midnight: #1A1A4E;
+  --color-abyss: #0D0D2B;
+  --color-hadal: #050510;
+  --color-bio-glow: #00FF9F;
+  --color-hydrothermal: #FF4500;
+  --color-text: #E0F7FA;
+}
+
+@theme {
+  --color-ocean-surface: #4FC3F7;
+  --color-ocean-twilight: #1A6B8A;
+  --color-ocean-midnight: #1A1A4E;
+  --color-ocean-abyss: #0D0D2B;
+  --color-ocean-hadal: #050510;
+  --color-bio-glow: #00FF9F;
+  --color-hydrothermal: #FF4500;
+  --color-ocean-text: #E0F7FA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img, video, svg {
+  max-width: 100%;
+}
+
+/* Ensure the page never scrolls horizontally */
+#root {
+  overflow-x: hidden;
+}
+
+/* Allow smooth vertical touch scrolling */
+main {
+  touch-action: pan-y;
+}
+
+/* On very small screens, scale down decorative text tracking */
+@media (max-width: 480px) {
+  .tracking-\[0\.5em\] { letter-spacing: 0.3em; }
+  .tracking-\[0\.4em\] { letter-spacing: 0.25em; }
+  .text-\[10px\] { font-size: 9px; }
+  .text-\[9px\]  { font-size: 8px; }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--color-hadal);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-hadal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-twilight);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 159, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 255, 159, 0.6); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(12px); opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce-arrow {
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-surface), var(--color-bio-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
