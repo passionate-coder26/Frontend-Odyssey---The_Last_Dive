@@ -716,9 +716,30 @@ export default function HadalZone({ scrollData }) {
                   </div>
                 </div>
 
-                <div className="absolute bottom-20 text-gold font-serif text-xl italic tracking-widest text-[#fb0]">
-                  Recognition. Connection. Peace.
+                <div className="absolute bottom-20 flex flex-col items-center gap-3 text-center px-6">
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 2 }}
+                    className="font-serif text-base italic"
+                    style={{ color: 'rgba(255,255,255,0.45)' }}
+                  >
+                    500 million years alone.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 3, duration: 2.5 }}
+                    className="font-serif text-2xl italic"
+                    style={{
+                      color: '#fbbf24',
+                      textShadow: '0 0 18px rgba(251,191,36,0.55), 0 0 40px rgba(251,191,36,0.2)'
+                    }}
+                  >
+                    And now, for the first time — it understood.
+                  </motion.p>
                 </div>
+
               </div>
             )}
 
