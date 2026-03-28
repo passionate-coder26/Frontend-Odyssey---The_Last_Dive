@@ -61,30 +61,36 @@ function EpilogueTypewriter({ onComplete }) {
   }, [visibleLines, lines.length, onComplete])
 
   return (
-    <div className="space-y-2 text-left max-h-screen overflow-hidden">
-      {lines.slice(0, visibleLines).map((line, i) => (
-        <motion.p
-          key={i}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className={`font-serif ${line.startsWith("'") ? 'text-yellow-300 italic text-xl' :
-            line === 'Once.' ? 'text-yellow-400 text-2xl text-center mt-8' :
-              line === 'For her.' ? 'text-yellow-300 text-2xl text-center' :
-                line === '' ? 'h-4' :
-                  'text-white/80'
-            }`}
-        >
-          {line}
-        </motion.p>
-      ))}
-      {visibleLines === lines.length && (
-        <motion.div
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 1, repeat: Infinity }}
-          className="w-2 h-6 bg-white inline-block"
-        />
-      )}
+    <div className="relative w-full max-h-[80vh] overflow-hidden">
+      <motion.div
+        animate={{ y: visibleLines > 12 ? -(visibleLines - 12) * 32 : 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="space-y-2 text-left"
+      >
+        {lines.slice(0, visibleLines).map((line, i) => (
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={`font-serif ${line.startsWith("'") ? 'text-yellow-300 italic text-xl' :
+              line === 'Once.' ? 'text-yellow-400 text-2xl text-center mt-8' :
+                line === 'For her.' ? 'text-yellow-300 text-2xl text-center' :
+                  line === '' ? 'h-4' :
+                    'text-white/80'
+              }`}
+          >
+            {line}
+          </motion.p>
+        ))}
+        {visibleLines === lines.length && (
+          <motion.div
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}
+            className="w-2 h-6 bg-white inline-block ml-1"
+          />
+        )}
+      </motion.div>
     </div>
   )
 }
@@ -226,8 +232,8 @@ function CinematicTentacle({ delay, x, rotate, color = "#00FF9F" }) {
       fill="none"
       strokeLinecap="round"
       initial={{ pathLength: 0, opacity: 0 }}
-      animate={{ 
-        pathLength: 1, 
+      animate={{
+        pathLength: 1,
         opacity: [0, 0.4, 0.2, 0.5],
         d: [
           `M ${x} 900 Q ${x + 100} ${500} 430 350`,
@@ -235,7 +241,7 @@ function CinematicTentacle({ delay, x, rotate, color = "#00FF9F" }) {
           `M ${x} 850 Q ${x + 50} ${450} 410 320`,
         ]
       }}
-      transition={{ 
+      transition={{
         pathLength: { duration: 5, delay, ease: "easeOut" },
         opacity: { duration: 5, delay, repeat: Infinity, repeatType: "mirror" },
         d: { duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }
@@ -253,19 +259,19 @@ function MarineSnow() {
       {particles.map((_, i) => (
         <motion.div
           key={i}
-          initial={{ 
-            x: Math.random() * 100 + "%", 
-            y: -10, 
+          initial={{
+            x: Math.random() * 100 + "%",
+            y: -10,
             opacity: Math.random() * 0.5,
             scale: Math.random() * 0.5 + 0.5
           }}
-          animate={{ 
+          animate={{
             y: ["0vh", "100vh"],
             x: [null, `${(Math.random() - 0.5) * 50}px`]
           }}
-          transition={{ 
-            duration: Math.random() * 10 + 10, 
-            repeat: Infinity, 
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
             ease: "linear",
             delay: Math.random() * 10
           }}
@@ -1180,7 +1186,7 @@ export default function HadalZone({ scrollData }) {
               </div>
             )}
 
-             {/* PHASE 6: THE FAREWELL */}
+            {/* PHASE 6: THE FAREWELL */}
             {endingPhase === 'farewell' && (
               <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                 {/* Deep ocean background */}
@@ -1231,7 +1237,7 @@ export default function HadalZone({ scrollData }) {
 
                 {/* Sinking Camera Shake */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     x: [-2, 2, -1, 1, 0],
                     y: [-1, 1, -0.5, 0.5, 0]
                   }}
@@ -1329,7 +1335,7 @@ export default function HadalZone({ scrollData }) {
   hover:text-yellow-400 transition-all text-xs 
   tracking-[0.4em] uppercase font-mono"
                 >
-                  [ RETURN TO SURFACE ]
+                  [ Relive Jacques Morel's last dive ]
                 </motion.button>
               </div>
             )}
