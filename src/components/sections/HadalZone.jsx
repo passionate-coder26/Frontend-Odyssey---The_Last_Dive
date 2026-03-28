@@ -745,8 +745,8 @@ export default function HadalZone({ scrollData }) {
 
             {/* PHASE 4: ELENA REVEALED */}
             {endingPhase === 'elena' && (
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-12">
-                {/* Kraken moves aside (sliding the eye out of frame) */}
+              <div className="relative w-full h-full flex flex-col items-center justify-center p-12 overflow-hidden">
+                {/* Kraken moves aside */}
                 <motion.div
                   animate={{ x: -1000, opacity: 0 }}
                   transition={{ duration: 3, ease: "easeInOut" }}
@@ -758,38 +758,186 @@ export default function HadalZone({ scrollData }) {
                   </svg>
                 </motion.div>
 
-                {/* Elena's Suit and Camera */}
+                {/* Elena reveal */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: -80 }}
                   transition={{ delay: 1, duration: 2 }}
                   className="relative z-10 flex flex-col items-center"
                 >
-                  <div className="relative w-48 h-72 mb-8">
-                    {/* Glowing Suit Silhouette */}
-                    <div className="absolute inset-0 bg-[#fb0]/20 blur-2xl rounded-full" />
-                    <svg viewBox="0 0 100 150" className="w-full h-full text-[#fb0]">
-                      <path d="M50,10 Q65,10 70,25 L75,60 L65,140 L35,140 L25,60 L30,25 Q35,10 50,10 Z" fill="currentColor" opacity="0.6" />
-                      <circle cx="50" cy="30" r="15" fill="none" stroke="currentColor" strokeWidth="1" />
-                    </svg>
-                  </div>
 
-                  {/* Elena's Camera */}
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ repeat: Infinity, duration: 4 }}
-                    className="w-16 h-12 bg-gray-800 rounded border border-[#fb0]/50 flex items-center justify-center"
+                  <div
+                    className="mb-4 text-xs tracking-[0.35em] font-mono text-yellow-300/90 uppercase relative z-20"
+                    style={{ textShadow: '0 0 10px rgba(255,200,0,0.45)' }}
                   >
-                    <div className="w-4 h-4 rounded-full bg-red-600 animate-pulse" />
-                  </motion.div>
-                  <div className="mt-4 font-mono text-[10px] text-[#fb0] tracking-widest">
-                    REC // UNIT 04-E // 847 DAYS
+                    Elena's Preserved Deep-Sea Dive Suit
                   </div>
-                </motion.div>
 
-                <div className="absolute bottom-10 max-w-md text-center text-white/40 text-sm italic">
-                  "Kraken kept it safe... Waiting for someone brave enough."
-                </div>
+                  {/* soft reveal glow behind suit */}
+                  <div className="absolute inset-0 blur-3xl rounded-full bg-yellow-300/10 scale-125 z-0" />
+
+                  <div className="absolute inset-0 pointer-events-none z-0">
+                    {Array.from({ length: 18 }).map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-yellow-200/40"
+                        style={{
+                          width: `${Math.random() * 3 + 1}px`,
+                          height: `${Math.random() * 3 + 1}px`,
+                          left: `${20 + Math.random() * 60}%`,
+                          top: `${20 + Math.random() * 60}%`,
+                          filter: 'blur(1px)'
+                        }}
+                        animate={{
+                          y: [0, -(Math.random() * 30 + 10)],
+                          opacity: [0, 0.7, 0],
+                        }}
+                        transition={{
+                          duration: Math.random() * 3 + 2,
+                          repeat: Infinity,
+                          delay: Math.random() * 2,
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* DIVER SUIT */}
+                  <motion.div
+                    animate={{ y: [0, -10, 0], rotate: [0, 0.5, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative z-10 flex flex-col items-center"
+                  >
+
+                    <div className="relative w-[260px] h-[420px] mb-8">
+                      <svg viewBox="0 0 260 420" className="w-full h-full drop-shadow-[0_20px_60px_rgba(0,0,0,0.65)]">
+                        {/* tank behind */}
+                        <rect x="98" y="78" width="64" height="122" rx="28" fill="#2e3440" stroke="#7c8596" strokeWidth="2" />
+                        <rect x="110" y="62" width="40" height="24" rx="8" fill="#4b5563" />
+                        <path d="M130 85 L130 115" stroke="#9ca3af" strokeWidth="4" />
+
+                        {/* helmet outer */}
+                        <circle cx="130" cy="82" r="52" fill="#394150" stroke="#bfa76a" strokeWidth="4" />
+
+                        {/* visor */}
+                        <ellipse cx="130" cy="85" rx="34" ry="28" fill="#8aa6bf" opacity="0.35" stroke="#d6e4f0" strokeWidth="2" />
+                        <path d="M112 68 Q124 58 144 66" stroke="white" strokeWidth="3" opacity="0.35" fill="none" />
+
+                        {/* helmet side bolts */}
+                        <circle cx="88" cy="82" r="4" fill="#c9a94d" />
+                        <circle cx="172" cy="82" r="4" fill="#c9a94d" />
+                        <circle cx="130" cy="35" r="4" fill="#c9a94d" />
+
+                        {/* neck ring */}
+                        <rect x="104" y="126" width="52" height="16" rx="6" fill="#7b5e2e" stroke="#d4af37" strokeWidth="2" />
+
+                        {/* torso */}
+                        <path
+                          d="M88 142
+               Q96 132 108 132
+               L152 132
+               Q164 132 172 142
+               L186 240
+               Q188 258 175 270
+               L85 270
+               Q72 258 74 240
+               Z"
+                          fill="#4b5563"
+                          stroke="#9ca3af"
+                          strokeWidth="3"
+                        />
+
+                        {/* chest panel */}
+                        <rect x="110" y="170" width="40" height="34" rx="6" fill="#1f2937" stroke="#6b7280" strokeWidth="2" />
+                        <circle cx="120" cy="186" r="4" fill="#ef4444" />
+                        <circle cx="130" cy="186" r="4" fill="#22c55e" />
+                        <circle cx="140" cy="186" r="4" fill="#38bdf8" />
+
+                        {/* hoses */}
+                        <path d="M100 138 C90 155, 82 180, 84 205" stroke="#6b7280" strokeWidth="5" fill="none" />
+                        <path d="M160 138 C170 155, 178 180, 176 205" stroke="#6b7280" strokeWidth="5" fill="none" />
+
+                        {/* left arm */}
+                        <path
+                          d="M83 154 C58 175, 48 215, 56 248"
+                          stroke="#7c8596"
+                          strokeWidth="24"
+                          fill="none"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="58" cy="253" r="14" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
+
+                        {/* right arm */}
+                        <path
+                          d="M177 154 C202 175, 212 215, 204 248"
+                          stroke="#7c8596"
+                          strokeWidth="24"
+                          fill="none"
+                          strokeLinecap="round"
+                        />
+                        <circle cx="204" cy="253" r="14" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
+
+                        {/* hips */}
+                        <rect x="96" y="266" width="68" height="28" rx="10" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
+
+                        {/* left leg */}
+                        <path
+                          d="M112 292 L100 365"
+                          stroke="#7c8596"
+                          strokeWidth="28"
+                          strokeLinecap="round"
+                        />
+                        <rect x="82" y="362" width="34" height="24" rx="8" fill="#1f2937" stroke="#9ca3af" strokeWidth="2" />
+
+                        {/* right leg */}
+                        <path
+                          d="M148 292 L160 365"
+                          stroke="#7c8596"
+                          strokeWidth="28"
+                          strokeLinecap="round"
+                        />
+                        <rect x="144" y="362" width="34" height="24" rx="8" fill="#1f2937" stroke="#9ca3af" strokeWidth="2" />
+
+                        {/* subtle gold edge light */}
+                        <path
+                          d="M182 145 L190 240 Q192 262 175 274"
+                          stroke="#fbbf24"
+                          strokeWidth="3"
+                          opacity="0.45"
+                          fill="none"
+                        />
+                        <path
+                          d="M153 133 Q165 133 172 143"
+                          stroke="#fbbf24"
+                          strokeWidth="3"
+                          opacity="0.45"
+                          fill="none"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* NARRATIVE TEXT */}
+                    <div className="max-w-md text-center text-white/50 text-sm italic mb-6 mt-2">
+                      "Kraken kept it safe... Waiting for someone brave enough."
+                    </div>
+
+                    {/* CAMERA MODULE */}
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ repeat: Infinity, duration: 4 }}
+                      className="relative flex flex-col items-center"
+                    >
+                      <div className="w-24 h-16 rounded-lg bg-slate-900 border border-yellow-500/30 shadow-[0_0_20px_rgba(255,200,0,0.12)] flex items-center justify-center relative">
+                        <div className="absolute left-3 w-3 h-3 rounded-full bg-red-600 animate-pulse" />
+                        <div className="w-8 h-8 rounded-full border-2 border-slate-500 bg-slate-800" />
+                        <div className="absolute right-3 w-2 h-2 rounded-full bg-cyan-300/70" />
+                      </div>
+
+                      <div className="mt-4 font-mono text-[11px] tracking-[0.25em] text-yellow-300/80 text-center">
+                        REC // UNIT 04-E // 847 DAYS
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
               </div>
             )}
 
