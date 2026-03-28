@@ -142,7 +142,7 @@ function FinalTextReveal() {
 function SpeakText({ text, baseDelay = 0, className = "" }) {
   const words = text.split(" ");
   let currentDelay = baseDelay;
-  
+
   const wordDelays = words.map((word) => {
     const d = currentDelay;
     currentDelay += 0.15;
@@ -161,14 +161,14 @@ function SpeakText({ text, baseDelay = 0, className = "" }) {
           key={i}
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
+          transition={{
             delay: wordDelays[i],
             duration: 0.4,
             ease: "easeOut"
           }}
-          className="inline-block mr-[0.25em]"
+          className="inline-block"
         >
-          {word}
+          {word}{" "}
         </motion.span>
       ))}
     </p>
@@ -1013,37 +1013,37 @@ export default function HadalZone({ scrollData }) {
                     </motion.span>
                   </div>
 
-                  <SpeakText 
+                  <SpeakText
                     text='"My name is Jacques Morel. 11,000 meters. O2 at 2%."'
                     baseDelay={1}
                     className="text-xl md:text-2xl leading-relaxed"
                   />
 
-                  <SpeakText 
+                  <SpeakText
                     text='"I found Elena. She is at peace."'
                     baseDelay={4.5}
                     className="text-lg opacity-80"
                   />
 
-                  <SpeakText 
+                  <SpeakText
                     text='"I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughter\s photograph, it stopped. It understood love."'
                     baseDelay={7}
                     className="text-lg opacity-80"
                   />
 
-                  <SpeakText 
+                  <SpeakText
                     text='"Sophie — ma chérie — you asked what was down here. Everything, I told you. I was right."'
                     baseDelay={16}
                     className="text-lg opacity-80"
                   />
 
-                  <SpeakText 
+                  <SpeakText
                     text='"The ocean gave me my whole life. It is only right I give it back."'
                     baseDelay={21}
                     className="text-lg opacity-80"
                   />
 
-                  <SpeakText 
+                  <SpeakText
                     text='"I love you. Tell the ocean thank you. — Papa"'
                     baseDelay={25}
                     className="text-2xl font-bold mt-12"
