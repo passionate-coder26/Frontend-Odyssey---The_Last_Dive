@@ -29,6 +29,33 @@ The entire experience is built with **React + Framer Motion + Three.js**, with a
 | Styling | Tailwind CSS v4 + Vanilla CSS |
 | Fonts | Cinzel · Playfair Display · Inter |
 
+
+## 🔊 Audio Experience
+
+An immersive procedural audio system runs throughout 
+the dive — generated entirely via the **Web Audio API** 
+(no audio files, no downloads).
+
+Each zone has its own soundscape:
+
+| Zone | Audio |
+|---|---|
+| Surface | Ocean waves, wind, distant seagulls |
+| Twilight | Deep pressure hum, bioluminescent pings |
+| Midnight | Heartbeat pulse, eerie anglerfish tones |
+| Abyss | Equipment warnings, structural creaking |
+| Hadal | Kraken rumble, cinematic emotional score |
+
+Jacques' **breathing rhythm** changes with depth — 
+faster as danger grows, slower as wonder takes over. 
+At O2: 0%, it stops completely.
+
+> Toggle audio anytime using the **🔊 button** 
+> fixed at the bottom-left of the screen.
+> Audio begins on first interaction 
+> (browser requirement).
+
+
 ## Getting Started
 
 ```bash
@@ -36,7 +63,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` — scroll to dive.
+Open `https://the-last-dive.vercel.app/` — scroll to dive.
 
 ---
 
