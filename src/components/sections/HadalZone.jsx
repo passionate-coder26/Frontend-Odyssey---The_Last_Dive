@@ -63,9 +63,9 @@ function EpilogueTypewriter({ onComplete }) {
   return (
     <div className="relative w-full max-h-[80vh] overflow-hidden">
       <motion.div
-        animate={{ y: visibleLines > 12 ? -(visibleLines - 12) * 32 : 0 }}
+        animate={{ y: visibleLines > 10 ? -(visibleLines - 10) * 28 : 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="space-y-2 text-left"
+        className="space-y-2 text-left px-4"
       >
         {lines.slice(0, visibleLines).map((line, i) => (
           <motion.p
@@ -73,9 +73,9 @@ function EpilogueTypewriter({ onComplete }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className={`font-serif ${line.startsWith("'") ? 'text-yellow-300 italic text-xl' :
-              line === 'Once.' ? 'text-yellow-400 text-2xl text-center mt-8' :
-                line === 'For her.' ? 'text-yellow-300 text-2xl text-center' :
+            className={`font-serif text-sm sm:text-base ${line.startsWith("'") ? 'text-yellow-300 italic text-lg sm:text-xl' :
+              line === 'Once.' ? 'text-yellow-400 text-xl sm:text-2xl text-center mt-8' :
+                line === 'For her.' ? 'text-yellow-300 text-xl sm:text-2xl text-center' :
                   line === '' ? 'h-4' :
                     'text-white/80'
               }`}
@@ -116,7 +116,7 @@ function FinalTextReveal() {
   ]
 
   return (
-    <div className="text-center space-y-4 max-w-2xl">
+    <div className="text-center space-y-4 max-w-sm sm:max-w-2xl px-6">
       {lines.map((line, i) => (
         <motion.p
           key={i}
@@ -124,7 +124,7 @@ function FinalTextReveal() {
           animate={{ opacity: 1 }}
           transition={{ delay: line.delay, duration: 1 }}
           className={`
-            ${line.big ? 'text-2xl font-bold tracking-widest font-mono' : 'text-lg font-serif'}
+            ${line.big ? 'text-lg sm:text-2xl font-bold tracking-widest font-mono' : 'text-sm sm:text-lg font-serif'}
             ${line.gold ? 'text-yellow-400' : 'text-white/80'}
           `}
         >
@@ -188,9 +188,9 @@ function DetailedJacques({ className = "" }) {
       initial={{ y: 0, opacity: 0, scale: 1 }}
       animate={{ y: 500, opacity: [0, 1, 1, 0], scale: 0.8 }}
       transition={{ duration: 15, ease: "linear" }}
-      className={`relative ${className}`}
+      className={`relative scale-75 md:scale-100 ${className}`}
     >
-      <svg viewBox="0 0 260 420" width="130" height="210" className="drop-shadow-[0_0_40px_rgba(255,215,0,0.4)]">
+      <svg viewBox="0 0 260 420" className="w-full h-full drop-shadow-[0_0_40px_rgba(255,215,0,0.4)]">
         {/* tank behind */}
         <rect x="98" y="78" width="64" height="122" rx="28" fill="#1a1a2e" stroke="#ffd700" strokeWidth="1" opacity="0.6" />
         {/* helmet outer */}
@@ -378,7 +378,7 @@ export default function HadalZone({ scrollData }) {
           <div className="text-[10px] tracking-[0.5em] mb-4" style={{ color: '#00FF9F' }}>
             ZONE 05 • 6000-11000M
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-widest mb-6" style={{ fontFamily: "'Cinzel', serif" }}>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-widest mb-6" style={{ fontFamily: "'Cinzel', serif" }}>
             <span style={{
               background: 'linear-gradient(135deg, #FFF, #00FF9F)',
               WebkitBackgroundClip: 'text',
@@ -387,14 +387,14 @@ export default function HadalZone({ scrollData }) {
               CHALLENGER DEEP
             </span>
           </h2>
-          <div className="text-xs tracking-[0.4em] font-mono" style={{ color: 'rgba(0, 255, 159, 0.4)' }}>
+          <div className="text-[10px] tracking-[0.4em] font-mono" style={{ color: 'rgba(0, 255, 159, 0.4)' }}>
             11,000 METERS
           </div>
         </motion.div>
 
         {/* Word-by-word narrative - Epic realization */}
-        <div className="my-24 min-h-[160px] max-w-2xl mx-auto">
-          <p className="text-xl md:text-3xl leading-relaxed italic font-light" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <div className="my-12 md:my-24 min-h-[160px] max-w-2xl mx-auto">
+          <p className="text-lg sm:text-2xl md:text-3xl leading-relaxed italic font-light" style={{ fontFamily: "'Playfair Display', serif" }}>
             {NARRATIVE_WORDS.map((word, i) => (
               <React.Fragment key={i}>
                 <motion.span
@@ -440,7 +440,7 @@ export default function HadalZone({ scrollData }) {
             }}
           />
 
-          <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10" style={{ filter: 'drop-shadow(0 -20px 50px rgba(0,255,159,0.2))' }}>
+          <svg width="100%" height="auto" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10 max-w-[320px] sm:max-w-[450px] md:max-w-[600px]" style={{ filter: 'drop-shadow(0 -20px 50px rgba(0,255,159,0.2))' }}>
             {/* Giant Head / Mantle outline blending into black */}
             <path d="M50,400 C80,250 200,100 300,100 C400,100 520,250 550,400" stroke="#00FF9F" strokeWidth="2" opacity="0.3" fill="url(#krakenGrad)" />
 
@@ -572,9 +572,9 @@ export default function HadalZone({ scrollData }) {
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 4, duration: 1 }}
-                  className="relative z-10 w-full max-w-4xl"
+                  className="relative z-10 w-full max-w-lg md:max-w-4xl px-4"
                 >
-                  <svg viewBox="0 0 800 600" className="w-full h-full">
+                  <svg viewBox="0 0 800 600" className="w-full h-auto">
                     {/* Giant Eye */}
                     <motion.g
                       initial={{ scaleY: 0.01 }}
@@ -638,8 +638,8 @@ export default function HadalZone({ scrollData }) {
 
                 {/* Kraken eye still visible - watching */}
                 <div className="absolute inset-0 flex items-center 
-    justify-center opacity-40">
-                  <svg viewBox="0 0 800 600" className="w-full h-full">
+    justify-center opacity-40 px-4">
+                  <svg viewBox="0 0 800 600" className="w-full max-w-xl h-auto">
                     <ellipse cx="400" cy="300" rx="300" ry="150"
                       fill="#200" stroke="#f00" strokeWidth="2" />
                     <circle cx="400" cy="300" r="120" fill="#700" />
@@ -659,7 +659,7 @@ export default function HadalZone({ scrollData }) {
                     animate={{ rotate: [-2, 2, -2], scale: [1, 0.98, 1] }}
                     transition={{ duration: 0.5, repeat: Infinity }}
                   >
-                    <svg viewBox="0 0 100 200" width="100" height="200">
+                    <svg viewBox="0 0 100 200" className="w-[80px] sm:w-[100px] h-auto">
                       <path
                         d="M50,20 Q65,20 70,40 L72,100 L65,180 
             L35,180 L28,100 L30,40 Q35,20 50,20 Z"
@@ -707,14 +707,14 @@ export default function HadalZone({ scrollData }) {
                 </motion.div>
 
                 {/* Jacques' thoughts - key change here */}
-                <div className="absolute bottom-0 left-0 right-0 
-    p-12 text-center">
+                <div className="absolute bottom-4 sm:bottom-0 left-0 right-0 
+    p-6 sm:p-12 text-center">
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 1 }}
-                    className="text-white/60 font-serif text-xl 
-        italic mb-4"
+                    className="text-white/60 font-serif text-lg sm:text-xl 
+        italic mb-2 sm:mb-4"
                   >
                     "It's real. It's actually real."
                   </motion.p>
@@ -722,8 +722,8 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 1 }}
-                    className="text-white/40 font-serif text-lg 
-        italic mb-4"
+                    className="text-white/40 font-serif text-sm sm:text-lg 
+        italic mb-2 sm:mb-4"
                   >
                     "I can't move. I can't breathe."
                   </motion.p>
@@ -731,7 +731,7 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 3.5, duration: 1 }}
-                    className="text-white/60 font-serif text-lg italic"
+                    className="text-white/60 font-serif text-sm sm:text-lg italic"
                   >
                     "I closed my eyes."
                   </motion.p>
@@ -739,8 +739,8 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 5, duration: 1 }}
-                    className="text-white/40 font-serif text-base 
-        italic mt-3"
+                    className="text-white/40 font-serif text-xs sm:text-base 
+        italic mt-2 sm:mt-3"
                   >
                     "I reached inside my jacket."
                   </motion.p>
@@ -748,8 +748,8 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 5.8, duration: 1 }}
-                    className="text-white/30 font-serif text-base 
-        italic mt-2"
+                    className="text-white/30 font-serif text-xs sm:text-base 
+        italic mt-1 sm:mt-2"
                   >
                     "If this was the end —"
                   </motion.p>
@@ -757,8 +757,8 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 6.5, duration: 1 }}
-                    className="text-yellow-300/70 font-serif text-lg 
-        italic mt-2"
+                    className="text-yellow-300/70 font-serif text-base sm:text-lg 
+        italic mt-1 sm:mt-2"
                   >
                     "I wanted her face to be the last thing I saw."
                   </motion.p>
@@ -792,9 +792,9 @@ export default function HadalZone({ scrollData }) {
                 {/* Jacques' Hand with Photograph */}
                 <motion.div
                   initial={{ y: 500, rotate: -20 }}
-                  animate={{ y: 100, rotate: 0 }}
+                  animate={{ y: 50, rotate: 0 }}
                   transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="relative z-50"
+                  className="relative z-50 scale-75 md:scale-100"
                 >
                   <div className="w-64 h-80 bg-white p-4 shadow-2xl skew-x-1 skew-y-1 border-8 border-gray-200">
                     <div className="w-full h-full bg-[#333] flex items-center justify-center overflow-hidden relative">
@@ -860,12 +860,12 @@ export default function HadalZone({ scrollData }) {
                   </div>
                 </div>
 
-                <div className="absolute bottom-20 flex flex-col items-center gap-3 text-center px-6">
+                <div className="absolute bottom-12 sm:bottom-20 flex flex-col items-center gap-2 sm:gap-3 text-center px-6">
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 2 }}
-                    className="font-serif text-base italic"
+                    className="font-serif text-sm sm:text-base italic"
                     style={{ color: 'rgba(255,255,255,0.45)' }}
                   >
                     500 million years alone.
@@ -874,7 +874,7 @@ export default function HadalZone({ scrollData }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 3, duration: 2.5 }}
-                    className="font-serif text-2xl italic"
+                    className="font-serif text-lg sm:text-2xl italic"
                     style={{
                       color: '#fbbf24',
                       textShadow: '0 0 18px rgba(251,191,36,0.55), 0 0 40px rgba(251,191,36,0.2)'
@@ -894,9 +894,9 @@ export default function HadalZone({ scrollData }) {
                 <motion.div
                   animate={{ x: -1000, opacity: 0 }}
                   transition={{ duration: 3, ease: "easeInOut" }}
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 >
-                  <svg viewBox="0 0 800 600" className="w-full h-full opacity-30">
+                  <svg viewBox="0 0 800 600" className="w-full h-auto opacity-30">
                     <ellipse cx="400" cy="300" rx="300" ry="150" fill="#420" stroke="#fd0" strokeWidth="2" />
                     <circle cx="400" cy="300" r="120" fill="#fb0" />
                   </svg>
@@ -952,115 +952,53 @@ export default function HadalZone({ scrollData }) {
                     className="relative z-10 flex flex-col items-center"
                   >
 
-                    <div className="relative w-[260px] h-[420px] mb-8">
+                    <div className="relative w-full max-w-[260px] h-auto aspect-[260/420] mb-8">
                       <svg viewBox="0 0 260 420" className="w-full h-full drop-shadow-[0_20px_60px_rgba(0,0,0,0.65)]">
                         {/* tank behind */}
                         <rect x="98" y="78" width="64" height="122" rx="28" fill="#2e3440" stroke="#7c8596" strokeWidth="2" />
                         <rect x="110" y="62" width="40" height="24" rx="8" fill="#4b5563" />
                         <path d="M130 85 L130 115" stroke="#9ca3af" strokeWidth="4" />
-
                         {/* helmet outer */}
                         <circle cx="130" cy="82" r="52" fill="#394150" stroke="#bfa76a" strokeWidth="4" />
-
                         {/* visor */}
                         <ellipse cx="130" cy="85" rx="34" ry="28" fill="#8aa6bf" opacity="0.35" stroke="#d6e4f0" strokeWidth="2" />
                         <path d="M112 68 Q124 58 144 66" stroke="white" strokeWidth="3" opacity="0.35" fill="none" />
-
                         {/* helmet side bolts */}
                         <circle cx="88" cy="82" r="4" fill="#c9a94d" />
                         <circle cx="172" cy="82" r="4" fill="#c9a94d" />
                         <circle cx="130" cy="35" r="4" fill="#c9a94d" />
-
                         {/* neck ring */}
                         <rect x="104" y="126" width="52" height="16" rx="6" fill="#7b5e2e" stroke="#d4af37" strokeWidth="2" />
-
                         {/* torso */}
-                        <path
-                          d="M88 142
-               Q96 132 108 132
-               L152 132
-               Q164 132 172 142
-               L186 240
-               Q188 258 175 270
-               L85 270
-               Q72 258 74 240
-               Z"
-                          fill="#4b5563"
-                          stroke="#9ca3af"
-                          strokeWidth="3"
-                        />
-
+                        <path d="M88 142 Q96 132 108 132 L152 132 Q164 132 172 142 L186 240 Q188 258 175 270 L85 270 Q72 258 74 240 Z" fill="#4b5563" stroke="#9ca3af" strokeWidth="3" />
                         {/* chest panel */}
                         <rect x="110" y="170" width="40" height="34" rx="6" fill="#1f2937" stroke="#6b7280" strokeWidth="2" />
                         <circle cx="120" cy="186" r="4" fill="#ef4444" />
                         <circle cx="130" cy="186" r="4" fill="#22c55e" />
                         <circle cx="140" cy="186" r="4" fill="#38bdf8" />
-
                         {/* hoses */}
                         <path d="M100 138 C90 155, 82 180, 84 205" stroke="#6b7280" strokeWidth="5" fill="none" />
                         <path d="M160 138 C170 155, 178 180, 176 205" stroke="#6b7280" strokeWidth="5" fill="none" />
-
-                        {/* left arm */}
-                        <path
-                          d="M83 154 C58 175, 48 215, 56 248"
-                          stroke="#7c8596"
-                          strokeWidth="24"
-                          fill="none"
-                          strokeLinecap="round"
-                        />
+                        {/* arms */}
+                        <path d="M83 154 C58 175, 48 215, 56 248" stroke="#7c8596" strokeWidth="24" fill="none" strokeLinecap="round" />
                         <circle cx="58" cy="253" r="14" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
-
-                        {/* right arm */}
-                        <path
-                          d="M177 154 C202 175, 212 215, 204 248"
-                          stroke="#7c8596"
-                          strokeWidth="24"
-                          fill="none"
-                          strokeLinecap="round"
-                        />
+                        <path d="M177 154 C202 175, 212 215, 204 248" stroke="#7c8596" strokeWidth="24" fill="none" strokeLinecap="round" />
                         <circle cx="204" cy="253" r="14" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
-
                         {/* hips */}
                         <rect x="96" y="266" width="68" height="28" rx="10" fill="#374151" stroke="#9ca3af" strokeWidth="2" />
-
-                        {/* left leg */}
-                        <path
-                          d="M112 292 L100 365"
-                          stroke="#7c8596"
-                          strokeWidth="28"
-                          strokeLinecap="round"
-                        />
+                        {/* legs */}
+                        <path d="M112 292 L100 365" stroke="#7c8596" strokeWidth="28" strokeLinecap="round" />
                         <rect x="82" y="362" width="34" height="24" rx="8" fill="#1f2937" stroke="#9ca3af" strokeWidth="2" />
-
-                        {/* right leg */}
-                        <path
-                          d="M148 292 L160 365"
-                          stroke="#7c8596"
-                          strokeWidth="28"
-                          strokeLinecap="round"
-                        />
+                        <path d="M148 292 L160 365" stroke="#7c8596" strokeWidth="28" strokeLinecap="round" />
                         <rect x="144" y="362" width="34" height="24" rx="8" fill="#1f2937" stroke="#9ca3af" strokeWidth="2" />
-
-                        {/* subtle gold edge light */}
-                        <path
-                          d="M182 145 L190 240 Q192 262 175 274"
-                          stroke="#fbbf24"
-                          strokeWidth="3"
-                          opacity="0.45"
-                          fill="none"
-                        />
-                        <path
-                          d="M153 133 Q165 133 172 143"
-                          stroke="#fbbf24"
-                          strokeWidth="3"
-                          opacity="0.45"
-                          fill="none"
-                        />
+                        {/* gold edge light */}
+                        <path d="M182 145 L190 240 Q192 262 175 274" stroke="#fbbf24" strokeWidth="3" opacity="0.45" fill="none" />
+                        <path d="M153 133 Q165 133 172 143" stroke="#fbbf24" strokeWidth="3" opacity="0.45" fill="none" />
                       </svg>
                     </div>
-
+ 
                     {/* NARRATIVE TEXT */}
-                    <div className="max-w-md text-center text-white/50 text-sm italic mb-6 mt-2">
+                    <div className="max-w-xs md:max-w-md text-center text-white/50 text-xs sm:text-sm italic mb-6 mt-2">
                       "Kraken kept it safe... Waiting for someone brave enough."
                     </div>
 
@@ -1122,37 +1060,37 @@ export default function HadalZone({ scrollData }) {
                   <SpeakText
                     text='"My name is Jacques Morel. 11,000 meters. O2 at 2%."'
                     baseDelay={1}
-                    className="text-xl md:text-2xl leading-relaxed"
+                    className="text-lg md:text-2xl leading-relaxed"
                   />
-
+ 
                   <SpeakText
                     text='"I found Elena. She is at peace."'
                     baseDelay={4.5}
-                    className="text-lg opacity-80"
+                    className="text-base md:text-lg opacity-80"
                   />
-
+ 
                   <SpeakText
                     text='"I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughters photograph, it stopped. It understood love."'
                     baseDelay={7}
-                    className="text-lg opacity-80"
+                    className="text-base md:text-lg opacity-80"
                   />
-
+ 
                   <SpeakText
                     text='"Sophie — ma chérie — you asked what was down here. Everything, I told you. I was right."'
                     baseDelay={16}
-                    className="text-lg opacity-80"
+                    className="text-base md:text-lg opacity-80"
                   />
-
+ 
                   <SpeakText
                     text='"The ocean gave me my whole life. It is only right I give it back."'
                     baseDelay={21}
-                    className="text-lg opacity-80"
+                    className="text-base md:text-lg opacity-80"
                   />
-
+ 
                   <SpeakText
                     text='"I love you. Tell the ocean thank you. — Papa"'
                     baseDelay={25}
-                    className="text-2xl font-bold mt-12"
+                    className="text-xl md:text-2xl font-bold mt-8 md:mt-12"
                   />
 
                   <motion.div
@@ -1169,7 +1107,7 @@ export default function HadalZone({ scrollData }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 30 }}
-                  className="mt-20 font-mono text-red-600 font-bold text-4xl"
+                  className="mt-12 md:mt-20 font-mono text-red-600 font-bold text-2xl md:text-4xl"
                 >
                   O2: 0%
                 </motion.div>
@@ -1204,7 +1142,7 @@ export default function HadalZone({ scrollData }) {
                   transition={{ duration: 2 }}
                   className="absolute inset-0"
                 >
-                  <svg viewBox="0 0 800 600" className="w-full h-full">
+                  <svg viewBox="0 0 800 600" className="w-full h-auto opacity-40">
                     {[...Array(5)].map((_, i) => (
                       <motion.path
                         key={i}
@@ -1226,7 +1164,7 @@ export default function HadalZone({ scrollData }) {
 
                 {/* Darker tentacles wrapping him */}
                 <div className="absolute inset-0 z-20 pointer-events-none">
-                  <svg viewBox="0 0 800 600" className="w-full h-full">
+                  <svg viewBox="0 0 800 600" className="w-full h-auto scale-125 md:scale-100">
                     <CinematicTentacle x={-200} delay={0} color="#00FF9F" />
                     <CinematicTentacle x={200} delay={1} color="#FF0055" />
                     <CinematicTentacle x={500} delay={2} color="#0088FF" />
@@ -1251,12 +1189,12 @@ export default function HadalZone({ scrollData }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 3, duration: 2 }}
-                  className="absolute bottom-20 text-center px-8"
+                  className="absolute bottom-10 sm:bottom-20 text-center px-8"
                 >
-                  <p className="text-2xl font-serif italic" style={{ color: '#ffd700' }}>
+                  <p className="text-xl sm:text-2xl font-serif italic" style={{ color: '#ffd700' }}>
                     "He became part of the deep."
                   </p>
-                  <p className="text-sm mt-4 tracking-widest font-mono" style={{ color: 'rgba(255,200,0,0.4)' }}>
+                  <p className="text-xs mt-2 sm:mt-4 tracking-widest font-mono" style={{ color: 'rgba(255,200,0,0.4)' }}>
                     "Part of the ocean that made him."
                   </p>
                 </motion.div>

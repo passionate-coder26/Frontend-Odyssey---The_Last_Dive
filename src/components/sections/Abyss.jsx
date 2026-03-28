@@ -33,7 +33,7 @@ export default function Abyss({ scrollData }) {
       <motion.img
         src="/shipwreck.png"
         alt="Abyss object"
-        className="absolute top-0 right-[53%] w-[clamp(280px,55vw,700px)] pointer-events-none z-[4]"
+        className="absolute top-0 right-4 md:right-[53%] w-[clamp(250px,65vw,700px)] pointer-events-none z-[4]"
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         animate={{ y: [-18, 18, -18] }}
@@ -52,7 +52,7 @@ export default function Abyss({ scrollData }) {
       />
 
       <motion.div
-        className="absolute top-12 right-[50%] rounded-full pointer-events-none z-[3]"
+        className="absolute top-12 right-0 md:right-[50%] rounded-full pointer-events-none z-[3]"
         style={{
           width: 'clamp(200px, 40vw, 520px)',
           height: 'clamp(200px, 40vw, 520px)',
@@ -191,10 +191,12 @@ export default function Abyss({ scrollData }) {
         />
       ))}
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* Narrative grid */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        {/* Narrative Left Column */}
+        {/* Narrative Column (Order 1 on mobile) */}
         <motion.div
+          className="order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
@@ -203,21 +205,21 @@ export default function Abyss({ scrollData }) {
           <div className="text-[10px] tracking-[0.5em] mb-4" style={{ color: '#FF4444' }}>
             ZONE 04 • 4000-6000M
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-widest mb-8" style={{ color: '#FFF', fontFamily: "'Cinzel', serif" }}>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-widest mb-8" style={{ color: '#FFF', fontFamily: "'Cinzel', serif" }}>
             THE ABYSS
           </h2>
 
-          <div className="space-y-6 text-base md:text-lg font-light italic" style={{ fontFamily: "'Playfair Display', serif", color: 'rgba(255, 255, 255, 0.7)' }}>
+          <div className="space-y-6 text-sm md:text-lg font-light italic max-w-[85%] lg:max-w-none" style={{ fontFamily: "'Playfair Display', serif", color: 'rgba(255, 255, 255, 0.7)' }}>
             <p>"4,000 meters. The pressure alarms have been screaming for an hour. System integrity dropping."</p>
             <p>"I found her helmet. It's crushed. But tucked inside the padding... she left a note."</p>
             <p className="text-[#00FF9F] font-normal">"Everyone told me to turn back. I'm not turning back."</p>
           </div>
 
           {/* Interactive Turn Back Bait */}
-          <div className="mt-12 relative">
+          <div className="mt-8 lg:mt-12 relative">
             <button
               onClick={handleTurnBack}
-              className="px-6 py-3 border border-red-500/50 bg-red-500/10 text-red-500 text-[10px] tracking-[0.3em] font-mono hover:bg-red-500/20 hover:border-red-500 transition-all cursor-pointer rounded uppercase"
+              className="px-6 py-2.5 md:py-3 border border-red-500/50 bg-red-500/10 text-red-500 text-[10px] tracking-[0.3em] font-mono hover:bg-red-500/20 hover:border-red-500 transition-all cursor-pointer rounded uppercase"
             >
               [ INITIATE EMERGENCY ASCENT ]
             </button>
@@ -228,7 +230,7 @@ export default function Abyss({ scrollData }) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="absolute top-16 left-0 text-[#00FF9F] font-mono text-[10px] tracking-widest bg-black/80 px-4 py-2 border border-[#00FF9F]/30"
+                  className="absolute top-16 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 text-[#00FF9F] font-mono text-[9px] md:text-[10px] tracking-widest bg-black/80 px-4 py-2 border border-[#00FF9F]/30 whitespace-nowrap"
                 >
                   &gt; SYSTEM OVERRIDDEN. HE CONTINUES.
                 </motion.div>
@@ -237,9 +239,9 @@ export default function Abyss({ scrollData }) {
           </div>
         </motion.div>
 
-        {/* Interactive Clue Right Column */}
+        {/* Interactive Clue Column (Order 2 on mobile) */}
         <motion.div
-          className="relative flex justify-center items-center min-h-[300px] lg:h-[500px]"
+          className="order-2 relative flex justify-center items-center min-h-[300px] lg:h-[500px]"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.3 }}
@@ -259,7 +261,7 @@ export default function Abyss({ scrollData }) {
           >
             {/* The Clue Tooltip */}
             <motion.div
-              className="absolute -top-36 left-1/2 -translate-x-1/2 w-80 p-5 glass rounded-lg border border-[#00FF9F]/40 pointer-events-none z-20"
+              className="absolute -top-36 left-1/2 -translate-x-1/2 w-[280px] md:w-80 p-5 glass rounded-lg border border-[#00FF9F]/40 pointer-events-none z-20"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: hoveredClue ? 1 : 0, y: hoveredClue ? 0 : 10 }}
               transition={{ duration: 0.3 }}
@@ -269,13 +271,13 @@ export default function Abyss({ scrollData }) {
                 <span>CLUE 03: {isCollected ? 'COLLECTED' : "ELENA'S HELMET"}</span>
                 {isCollected && <span className="text-[8px]">✓</span>}
               </div>
-              <p className="text-sm text-[#E0F7FA]/90 font-light italic leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <p className="text-[13px] md:text-sm text-[#E0F7FA]/90 font-light italic leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>
                 "If anyone finds this... it's not a monster. It's beautiful. It's ancient. And it has been waiting for us."
               </p>
             </motion.div>
 
-            {/* Helmet SVG Illustration */}
-            <svg width="180" height="200" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: hoveredClue ? 'drop-shadow(0 0 30px rgba(0,255,159,0.3))' : 'drop-shadow(0 20px 30px rgba(0,0,0,0.9))', transition: 'filter 0.3s ease' }}>
+            {/* Helmet SVG Illustration - Scaled for mobile */}
+            <svg width="150" height="170" className="md:w-[180px] md:h-[200px]" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: hoveredClue ? 'drop-shadow(0 0 30px rgba(0,255,159,0.3))' : 'drop-shadow(0 20px 30px rgba(0,0,0,0.9))', transition: 'filter 0.3s ease' }}>
               {/* Helmet Dome */}
               <path d="M20,100 C20,30 160,30 160,100 C160,150 140,180 90,180 C40,180 20,150 20,100 Z" fill="#1A1F24" stroke="#2C3A47" strokeWidth="4" />
               {/* Visor Area (Smashed) */}

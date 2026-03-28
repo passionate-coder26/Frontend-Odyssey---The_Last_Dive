@@ -14,9 +14,10 @@ export default function ClueHUD() {
   const totalCount = Object.keys(collectedClues).length
 
   return (
-    <div className="fixed top-20 md:top-24 right-2 md:right-6 z-[100] pointer-events-none">
+    <div className="fixed top-12 md:top-24 right-2 md:right-6 z-[100] pointer-events-none">
       <motion.div 
-        className="glass p-2 md:p-4 rounded-xl border border-white/10 flex flex-col gap-2 md:gap-3 min-w-[140px] md:min-w-[180px]"
+        className="glass p-2 md:p-4 rounded-xl border border-white/10 flex flex-col gap-2 md:gap-3 min-w-[100px] md:min-w-[180px]"
+
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: 'spring', damping: 20, stiffness: 100 }}

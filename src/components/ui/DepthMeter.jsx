@@ -15,11 +15,12 @@ export default function DepthMeter({ scrollData }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 50 }}
+      initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 2, duration: 0.8 }}
-      className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3"
+      className="fixed right-4 md:right-8 bottom-6 md:top-1/2 md:-translate-y-1/2 z-40 flex flex-col items-center gap-2 md:gap-3"
       aria-label="Depth meter"
+
     >
       {/* Zone name */}
       <motion.div
@@ -55,8 +56,8 @@ export default function DepthMeter({ scrollData }) {
         </motion.div>
       </div>
 
-      {/* Vertical track */}
-      <div className="relative w-0.5 h-40 rounded-full" style={{ background: 'rgba(255,255,255,0.08)' }}>
+      {/* Vertical track - Hidden on mobile for space */}
+      <div className="hidden md:relative w-0.5 h-40 rounded-full" style={{ background: 'rgba(255,255,255,0.08)' }}>
         {/* Progress fill */}
         <motion.div
           className="absolute top-0 left-0 w-full rounded-full"
@@ -89,6 +90,7 @@ export default function DepthMeter({ scrollData }) {
           />
         </div>
       </div>
+
 
       {/* Depth number */}
       <div className="text-center mt-2">
