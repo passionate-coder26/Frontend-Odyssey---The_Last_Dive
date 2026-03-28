@@ -200,7 +200,7 @@ export default function HadalZone({ scrollData }) {
     } else if (endingPhase === 'recognition') {
       timer = setTimeout(() => setEndingPhase('elena'), 6000) // Color shift + Recognition
     } else if (endingPhase === 'elena') {
-      timer = setTimeout(() => setEndingPhase('message'), 7000) // Reveal + Moving aside
+      // Waiting for user to click camera
     } else if (endingPhase === 'farewell') {
       timer = setTimeout(() => setEndingPhase('epilogue'), 8000)
     }
@@ -924,17 +924,27 @@ export default function HadalZone({ scrollData }) {
                     <motion.div
                       animate={{ y: [0, -6, 0] }}
                       transition={{ repeat: Infinity, duration: 4 }}
-                      className="relative flex flex-col items-center"
+                      className="relative flex flex-col items-center cursor-pointer group"
+                      onClick={() => setEndingPhase('message')}
                     >
-                      <div className="w-24 h-16 rounded-lg bg-slate-900 border border-yellow-500/30 shadow-[0_0_20px_rgba(255,200,0,0.12)] flex items-center justify-center relative">
-                        <div className="absolute left-3 w-3 h-3 rounded-full bg-red-600 animate-pulse" />
+                      <div className="w-24 h-16 rounded-lg bg-slate-900 border border-yellow-500/30 group-hover:border-yellow-400 group-hover:shadow-[0_0_30px_rgba(255,200,0,0.3)] transition-all shadow-[0_0_20px_rgba(255,200,0,0.12)] flex items-center justify-center relative">
+                        <div className="absolute left-3 w-3 h-3 rounded-full bg-red-600 animate-pulse group-hover:bg-red-500 group-hover:shadow-[0_0_10px_rgba(255,0,0,0.8)]" />
                         <div className="w-8 h-8 rounded-full border-2 border-slate-500 bg-slate-800" />
                         <div className="absolute right-3 w-2 h-2 rounded-full bg-cyan-300/70" />
                       </div>
 
-                      <div className="mt-4 font-mono text-[11px] tracking-[0.25em] text-yellow-300/80 text-center">
+                      <div className="mt-4 font-mono text-[11px] tracking-[0.25em] text-yellow-300/80 text-center group-hover:text-yellow-300 transition-colors">
                         REC // UNIT 04-E // 847 DAYS
                       </div>
+
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 4, duration: 1 }}
+                        className="mt-4 text-[10px] tracking-widest text-white/50 uppercase group-hover:text-white transition-colors animate-pulse"
+                      >
+                         [ CLICK TO PLAY LAST LOG ]
+                      </motion.div>
                     </motion.div>
                   </motion.div>
                 </motion.div>
