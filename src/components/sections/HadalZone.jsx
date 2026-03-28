@@ -155,7 +155,7 @@ function SpeakText({ text, baseDelay = 0, className = "" }) {
   });
 
   return (
-    <p className={className}>
+    <p className={`whitespace-pre-wrap ${className}`}>
       {words.map((word, i) => (
         <motion.span
           key={i}
