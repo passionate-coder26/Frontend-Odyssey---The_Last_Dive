@@ -953,7 +953,7 @@ export default function HadalZone({ scrollData }) {
 
             {/* PHASE 5: JACQUES' FINAL MESSAGE */}
             {endingPhase === 'message' && (
-              <div className="relative w-full h-full bg-[#050505] flex flex-col items-center justify-start pt-32 px-8">
+              <div className="relative w-full h-full bg-[#050505] flex flex-col items-center justify-center px-8">
                 {/* Shaky camera effect overlay */}
                 <motion.div
                   animate={{ x: [-1, 1, -0.5, 0.5, 0], y: [-1, 0.5, -0.5, 1, 0] }}
