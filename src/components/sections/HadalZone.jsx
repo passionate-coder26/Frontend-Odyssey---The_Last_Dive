@@ -745,7 +745,7 @@ export default function HadalZone({ scrollData }) {
 
             {/* PHASE 4: ELENA REVEALED */}
             {endingPhase === 'elena' && (
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-12 overflow-hidden">
+              <div className="relative w-full h-full flex flex-col items-center justify-center pt-24 p-12 overflow-hidden">
                 {/* Kraken moves aside */}
                 <motion.div
                   animate={{ x: -1000, opacity: 0 }}
@@ -761,7 +761,7 @@ export default function HadalZone({ scrollData }) {
                 {/* Elena reveal */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.85, y: 30 }}
-                  animate={{ opacity: 1, scale: 1, y: -80 }}
+                  animate={{ opacity: 1, scale: 1, y: -30 }}
                   transition={{ delay: 1, duration: 2 }}
                   className="relative z-10 flex flex-col items-center"
                 >
@@ -943,7 +943,7 @@ export default function HadalZone({ scrollData }) {
                         transition={{ delay: 4, duration: 1 }}
                         className="mt-4 text-[10px] tracking-widest text-white/50 uppercase group-hover:text-white transition-colors animate-pulse"
                       >
-                         [ CLICK TO PLAY LAST LOG ]
+                        [ CLICK TO PLAY LAST LOG ]
                       </motion.div>
                     </motion.div>
                   </motion.div>

@@ -25,10 +25,10 @@ export default function MidnightZone({ scrollData }) {
   const shadowOpacity = Math.min(1, Math.max(0, (progress - 0.3) / 0.3))
 
   const fishSwarm = [
-    { id: 1, top: '10%', left: '5%', width: 110, duration: 24, delay: 0, opacity: 0.09, flip: true, blur: 1.4 },
-    { id: 2, top: '24%', left: '68%', width: 150, duration: 18, delay: 2, opacity: 0.14, flip: false, blur: 0.9 },
-    { id: 3, top: '50%', left: '12%', width: 220, duration: 14, delay: 4, opacity: 0.2, flip: true, blur: 0.3 },
-    { id: 4, top: '66%', left: '72%', width: 130, duration: 21, delay: 1, opacity: 0.11, flip: false, blur: 1.1 },
+    { id: 1, top: '10%', left: '5%', width: 110, duration: 24, delay: 0, opacity: 0.15, flip: true, blur: 2.5 },
+    { id: 2, top: '24%', left: '68%', width: 150, duration: 28, delay: 5, opacity: 0.2, flip: false, blur: 1.8 },
+    { id: 3, top: '50%', left: '12%', width: 220, duration: 35, delay: 2, opacity: 0.3, flip: true, blur: 1.2 },
+    { id: 4, top: '66%', left: '72%', width: 130, duration: 21, delay: 7, opacity: 0.18, flip: false, blur: 2.0 },
   ]
 
   return (
@@ -69,19 +69,20 @@ export default function MidnightZone({ scrollData }) {
               width: fish.width,
               opacity: fish.opacity,
               transform: fish.flip ? 'scaleX(-1)' : 'scaleX(1)',
-              filter: `blur(${fish.blur}px) brightness(0.85) contrast(1.1)`,
+              filter: `blur(${fish.blur}px) brightness(0.8) contrast(1.1) drop-shadow(0 10px 10px rgba(0,0,0,0.5))`,
             }}
             animate={{
-              x: fish.flip ? [-40, 220, -40] : [40, -180, 40],
-              y: [0, -18, 14, 0],
-              rotate: fish.flip ? [-3, 2, -3] : [3, -2, 3],
-              scale: [1, 1.03, 1],
+              x: fish.flip ? [-40, 220, 180, 260, -40] : [40, -180, -140, -220, 40],
+              y: [0, -18, 30, -5, 0],
+              rotate: fish.flip ? [-3, 5, -8, 2, -3] : [3, -5, 8, -2, 3],
+              scale: [1, 1.05, 0.98, 1.08, 1],
             }}
             transition={{
               duration: fish.duration,
               delay: fish.delay,
               repeat: Infinity,
               ease: 'easeInOut',
+              times: [0, 0.4, 0.5, 0.8, 1],
             }}
           />
         ))}
@@ -92,24 +93,26 @@ export default function MidnightZone({ scrollData }) {
         <motion.img
           src="/dangerous_fish.png"
           alt="Dangerous deep sea fish"
-          className="hidden lg:block absolute -top-6 -left-16 w-[min(420px,35vw)] scale-x-[-1] opacity-80 pointer-events-none select-none z-[4]"
-          initial={{ opacity: 0, x: -80, scale: 0.9 }}
-          whileInView={{ opacity: 0.8, x: 0, scale: 1 }}
+          className="hidden lg:block absolute -top-12 -left-20 w-[min(480px,40vw)] scale-x-[-1] opacity-70 pointer-events-none select-none z-[4]"
+          initial={{ opacity: 0, x: -120, scale: 0.85 }}
+          whileInView={{ opacity: 0.7, x: 0, scale: 1 }}
           animate={{
-            x: [-150, 120, -150],
-            y: [0, -30, 20, 0],
-            rotate: [-5, 5, -5],
-            scaleX: [1, 1.05, 1],
-            opacity: [0.45, 0.8, 0.55, 0.8],
+            x: [-150, 60, 45, 120, -150],
+            y: [0, -20, 15, -40, 0],
+            rotate: [-6, 3, -8, 6, -6],
+            scaleX: [1, 1.05, 0.98, 1.08, 1],
+            opacity: [0.6, 0.9, 0.7, 0.95, 0.6],
           }}
           transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
+             x: { duration: 28, repeat: Infinity, ease: "easeInOut", times: [0, 0.3, 0.35, 0.7, 1] },
+             y: { duration: 22, repeat: Infinity, ease: "easeInOut" },
+             rotate: { duration: 25, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 0.35, 0.8, 1] },
+             scaleX: { duration: 28, repeat: Infinity, ease: "easeInOut", times: [0, 0.3, 0.35, 0.7, 1] },
+             opacity: { duration: 15, repeat: Infinity, ease: "easeInOut" },
           }}
           style={{
             transformOrigin: "center",
-            filter: "blur(0.3px)",
+            filter: "brightness(0.85) contrast(1.2) saturate(0.9) drop-shadow(10px 15px 20px rgba(0,0,0,0.7)) blur(0.5px)",
           }}
         />
 
