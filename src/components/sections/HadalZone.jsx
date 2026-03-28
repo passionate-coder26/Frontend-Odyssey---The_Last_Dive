@@ -138,7 +138,45 @@ function FinalTextReveal() {
   )
 }
 
+// Word-by-word reveal component for log messages
+function SpeakText({ text, baseDelay = 0, className = "" }) {
+  const words = text.split(" ");
+  let currentDelay = baseDelay;
+  
+  const wordDelays = words.map((word) => {
+    const d = currentDelay;
+    currentDelay += 0.15;
+    if (word.includes(".") || word.includes("!") || word.includes("?") || word.includes("—")) {
+      currentDelay += 0.5;
+    } else if (word.includes(",")) {
+      currentDelay += 0.25;
+    }
+    return d;
+  });
+
+  return (
+    <p className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            delay: wordDelays[i],
+            duration: 0.4,
+            ease: "easeOut"
+          }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </p>
+  );
+}
+
 export default function HadalZone({ scrollData }) {
+
   let cumulativeDelay = 0;
 
   const getDelay = (word) => {
@@ -975,34 +1013,46 @@ export default function HadalZone({ scrollData }) {
                     </motion.span>
                   </div>
 
-                  <p className="text-xl md:text-2xl leading-relaxed">
-                    "My name is Jacques Morel. 11,000 meters. O2 at 2%."
-                  </p>
+                  <SpeakText 
+                    text='"My name is Jacques Morel. 11,000 meters. O2 at 2%."'
+                    baseDelay={1}
+                    className="text-xl md:text-2xl leading-relaxed"
+                  />
 
-                  <p className="text-lg opacity-80 transition-opacity duration-1000">
-                    "I found Elena. She is at peace."
-                  </p>
+                  <SpeakText 
+                    text='"I found Elena. She is at peace."'
+                    baseDelay={4.5}
+                    className="text-lg opacity-80"
+                  />
 
-                  <p className="text-lg opacity-80">
-                    "I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughter's photograph, it stopped. It understood love."
-                  </p>
+                  <SpeakText 
+                    text='"I found the Kraken. Look at it. Really look. Every scar — we gave it. And still, when I showed it my daughter\s photograph, it stopped. It understood love."'
+                    baseDelay={7}
+                    className="text-lg opacity-80"
+                  />
 
-                  <p className="text-lg opacity-80">
-                    "Sophie — ma chérie — you asked what was down here. Everything, I told you. I was right."
-                  </p>
+                  <SpeakText 
+                    text='"Sophie — ma chérie — you asked what was down here. Everything, I told you. I was right."'
+                    baseDelay={16}
+                    className="text-lg opacity-80"
+                  />
 
-                  <p className="text-lg opacity-80">
-                    "The ocean gave me my whole life. It is only right I give it back."
-                  </p>
+                  <SpeakText 
+                    text='"The ocean gave me my whole life. It is only right I give it back."'
+                    baseDelay={21}
+                    className="text-lg opacity-80"
+                  />
 
-                  <p className="text-2xl font-bold mt-12">
-                    "I love you. Tell the ocean thank you. — Papa"
-                  </p>
+                  <SpeakText 
+                    text='"I love you. Tell the ocean thank you. — Papa"'
+                    baseDelay={25}
+                    className="text-2xl font-bold mt-12"
+                  />
 
                   <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ delay: 10, duration: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [1, 1, 0] }}
+                    transition={{ delay: 28, duration: 2 }}
                     className="text-3xl text-red-500 font-bold text-center mt-12"
                   >
                     O2: 1%
@@ -1012,7 +1062,7 @@ export default function HadalZone({ scrollData }) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 12 }}
+                  transition={{ delay: 30 }}
                   className="mt-20 font-mono text-red-600 font-bold text-4xl"
                 >
                   O2: 0%
@@ -1021,7 +1071,7 @@ export default function HadalZone({ scrollData }) {
                 <motion.button
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 14 }}
+                  transition={{ delay: 32 }}
                   onClick={() => setEndingPhase('farewell')}
                   className="mt-12 px-8 py-4 border border-white/20 hover:border-white/50 text-white/50 hover:text-white transition-all text-xs tracking-[0.4em] uppercase"
                 >
